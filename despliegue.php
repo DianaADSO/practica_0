@@ -6,7 +6,11 @@ include('funciones.php');
 // Se invoca la función consultar
 echo consulta()."<br>";
 
-echo consulta1();
+// Se invoca la función calculo_v2
+echo calculo_v2() . "<br>";
+
+// Se invoca la función calculo_v3
+echo calculo_v3() . "<br>";
 
 
 

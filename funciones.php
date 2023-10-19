@@ -25,7 +25,7 @@ function consulta(){
 
 
 //Función para consultar1
-function consulta1()
+function calculo_v2()
 {
     $salida = 0; // Inicializa la variable
 
@@ -42,6 +42,36 @@ function consulta1()
         $n1  = $fila['n1']; //Recibe el valor de la columna n1
         $n2  = $fila['n2']; //Recibe el valor de la columna n2
         $salida += $n1 + $n2; // Suma los valores de n1 y n2
+    }
+
+
+    $conexion->close(); //Cerrar conexion
+    return $salida; //Retorna la operación
+
+}
+
+//Función para consultar1
+function calculo_v3()
+{
+    $salida = 0; // Inicializa la variable
+
+    //Conexión con la base de datos
+    $conexion = mysqli_connect('localhost', 'root', 'root', 'db_proyecto_ddm');
+    $sql      = "SELECT 21 as 'edad'"; //Sql para publicar una columna con un número
+    $resultado = $conexion->query($sql); //Resultado de ejecutar el query
+
+    //Recorre el recordset
+    while ($fila = mysqli_fetch_assoc($resultado)) {
+
+        //Valida si es mayor de edad
+        if($fila > 18){
+
+            $salida = "Es mayor de edad"; // Envia mensaje afirmativo
+        }else{
+
+            $salida = "No es mayor de edad"; // Envia mensaje negativo
+        }
+
     }
 
 
