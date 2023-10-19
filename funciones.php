@@ -183,9 +183,33 @@ function actualizar_usuarios($usuario, $sitio)
         $salida = "No se ha agregado tu sitio"; // Envia mensaje negativo
     }
     return $salida; //Retorna la operación
-} 
+}
 
 
 
+//funcion para contar_usuarios
+function mostrar_sitio($usuario)
+{
+
+    $salida = 0; // Inicializa la variable
+
+    //Conexión con la base de datos
+    $conexion = mysqli_connect('localhost', 'root', 'root', 'db_proyecto_ddm');
+    $sql      = "SELECT sitio from tb_usuarios where usuario = '$usuario';"; //Sql para mostrar el sitio del usuario 
+    $resultado = $conexion->query($sql); //Resultado de ejecutar el query
+
+    //Recorre el recordset
+    while ($fila = mysqli_fetch_assoc($resultado)) {
+
+        $salida = "El sitio" . " " . "de". " " . $usuario . " " . "es:" . " " . $fila['sitio']; //Recibe el valor de la columna sitio
+
+    }
+
+
+
+
+    $conexion->close(); //Cerrar conexion
+    return $salida; //Retorna la operación
+}
 
 ?>

@@ -22,3 +22,5 @@ create table tb_usuarios(
 
      set sql_safe_updates = 0;
  UPDATE tb_usuarios set sitio = 'sena' where usuario = 'diana';
+
+ select sitio from tb_usuarios where usuario = 'diana';
