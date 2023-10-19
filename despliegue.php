@@ -22,7 +22,7 @@ echo contar_usuarios() . "<br>". "<br>";
 //echo borrar_usuarios('diana');
 
 // Se invoca la función actualizar_usuarios
-//echo actualizar_usuarios('diana', 'https://twitter.com/dianaprograma');
+//echo actualizar_usuarios('vale', 'https://twitter.com/valeprograma');
 
 // Se invoca la función actualizar_usuarios
 echo mostrar_sitio('diana') . "<br>";

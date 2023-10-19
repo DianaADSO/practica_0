@@ -177,7 +177,7 @@ function actualizar_usuarios($usuario, $sitio)
     //validación si el resultado es verdadero
     if ($resultado == true) {
 
-        $salida = "Se ha agregado tu sitio"; // Envia mensaje afirmativo
+        $salida = "Se ha agregado tu sitio:" . " " .$sitio; // Envia mensaje afirmativo
     } else {
 
         $salida = "No se ha agregado tu sitio"; // Envia mensaje negativo
@@ -187,21 +187,23 @@ function actualizar_usuarios($usuario, $sitio)
 
 
 
-//funcion para contar_usuarios
+//funcion para mostrar_sitio
 function mostrar_sitio($usuario)
 {
 
-    $salida = 0; // Inicializa la variable
+    $salida = " "; // Inicializa la variable
 
     //Conexión con la base de datos
     $conexion = mysqli_connect('localhost', 'root', 'root', 'db_proyecto_ddm');
-    $sql      = "SELECT sitio from tb_usuarios where usuario = '$usuario';"; //Sql para mostrar el sitio del usuario 
+    $sql      = "SELECT sitio from tb_usuarios where usuario = '$usuario'"; //Sql para mostrar el sitio del usuario 
     $resultado = $conexion->query($sql); //Resultado de ejecutar el query
 
     //Recorre el recordset
     while ($fila = mysqli_fetch_assoc($resultado)) {
 
-        $salida = "El sitio" . " " . "de". " " . $usuario . " " . "es:" . " " . $fila['sitio']; //Recibe el valor de la columna sitio
+        $salida .= "El sitio" . " " . "de". " " . $usuario . " " . "es:" . " " . "<a href='".$fila['sitio']."'>"; //Recibe el valor de la columna sitio y genera un enlace
+        $salida .= "Ve a mi sitio"; //concatena el enlace
+        $salida .= " </a>";//concatena el enlace
 
     }
 
@@ -211,5 +213,8 @@ function mostrar_sitio($usuario)
     $conexion->close(); //Cerrar conexion
     return $salida; //Retorna la operación
 }
+
+
+
 
 ?>
