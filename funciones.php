@@ -63,13 +63,15 @@ function calculo_v3()
     //Recorre el recordset
     while ($fila = mysqli_fetch_assoc($resultado)) {
 
+        $salida = $fila['edad'];
+
         //Valida si es mayor de edad
         if($fila > 18){
 
-            $salida = "Es mayor de edad"; // Envia mensaje afirmativo
+            $salida = "Es mayor de edad". " " . "con " . " " . $salida. " ". "años."; // Envia mensaje afirmativo
         }else{
 
-            $salida = "No es mayor de edad"; // Envia mensaje negativo
+            $salida = "No es mayor de edad" . " " . "con " . " " . $salida . " " . "años."; // Envia mensaje negativo
         }
 
     }
@@ -78,6 +80,31 @@ function calculo_v3()
     $conexion->close(); //Cerrar conexion
     return $salida; //Retorna la operación
 
+}
+
+
+//funcion para contar
+function contar_usuarios(){
+
+    $salida = 0; // Inicializa la variable
+
+    //Conexión con la base de datos
+    $conexion = mysqli_connect('localhost', 'root', 'root', 'db_proyecto_ddm');
+    $sql      = "SELECT count(*) as 'Conteo de usuarios' from tb_usuarios"; //Sql para publicar una columna con un número
+    $resultado = $conexion->query($sql); //Resultado de ejecutar el query
+
+    //Recorre el recordset
+    while ($fila = mysqli_fetch_assoc($resultado)) {
+
+        $salida = "Cantidad de usuarios:". " ". $fila['Conteo de usuarios']; //Recibe el valor de la columna Conteo de usuarios
+
+    }
+
+
+
+
+    $conexion->close(); //Cerrar conexion
+    return $salida; //Retorna la operación
 }
 
 
