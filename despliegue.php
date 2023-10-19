@@ -6,6 +6,7 @@ include('funciones.php');
 // Se invoca la función consultar
 echo consulta()."<br>";
 
+echo consulta1();
 
 
 
