@@ -120,14 +120,8 @@ function insertar_usuarios($nombres, $usuario, $email, $clave)
     $sql     .="VALUES ('$nombres', '$usuario', '$email','$clave' )"; //sql ingresa valores concatenando
     $resultado = $conexion->query($sql); //Resultado de ejecutar el query
 
-    try {
-
-        $resultado = $conexion->query($sql);
-    } catch (mysqli_sql_exception $e) {
-        //var_dump( $e );
-        //echo $e->getMessage(); //Imprimie el error.
-    }
-
+  
+    //si encuentra un valor en la columna
     if ($conexion->affected_rows > 0) {
 
         //echo "Grabado grabado hola";
@@ -142,6 +136,54 @@ function insertar_usuarios($nombres, $usuario, $email, $clave)
 
     return $salida;//Retorna la operación
 }
+
+
+//funcion para contar_usuarios
+function borrar_usuarios( $usuario)
+{
+
+    $salida = "";
+
+    //Conexión con la base de datos
+    $connexion = new mysqli('localhost', 'root', 'root', 'db_proyecto_ddm');
+    $consulta  = "DELETE FROM `db_proyecto_ddm`.`tb_usuarios` WHERE (`usuario` = '$usuario')"; //Sql para borrar usuario
+    $resultado = $connexion->query($consulta);//Resultado de ejecutar el query
+ 
+
+        //validación si el resultado es verdadero
+        if ($resultado == true) {
+
+            $salida = "Tus datos han sido eliminado de la base"; // Envia mensaje afirmativo
+        } else {
+
+            $salida = "Vuelve a intentarlo"; // Envia mensaje negativo
+        }
+    return $salida;//Retorna la operación
+    }
+
+
+//funcion para contar_usuarios
+function actualizar_usuarios($usuario, $sitio)
+{
+
+    $salida = "";
+
+    //Conexión con la base de datos
+    $connexion = new mysqli('localhost', 'root', 'root', 'db_proyecto_ddm');
+    $consulta  = "UPDATE tb_usuarios set sitio = '$sitio' where usuario = '$usuario'"; //Sql para borrar usuario
+    $resultado = $connexion->query($consulta); //Resultado de ejecutar el query
+
+
+    //validación si el resultado es verdadero
+    if ($resultado == true) {
+
+        $salida = "Se ha agregado tu sitio"; // Envia mensaje afirmativo
+    } else {
+
+        $salida = "No se ha agregado tu sitio"; // Envia mensaje negativo
+    }
+    return $salida; //Retorna la operación
+} 
 
 
 

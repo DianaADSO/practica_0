@@ -1,0 +1,24 @@
+SELECT 2 + 1 as 'Suma';
+
+SELECT 10 as 'n1', 
+20 as 'n2';
+
+SELECT count(*) as 'Conteo de usuarios' from tb_usuarios
+
+select * from tb_usuarios;
+
+INSERT INTO `db_proyecto_ddm`.`tb_usuarios` (`id_usuario`, `nombres`, `usuario`, `email`, `clave`) VALUES ('9', 'Valentina', 'valentina', 'vale@gmail.com', '123');
+
+create table tb_usuarios(
+	id_usuario	int		auto_increment		not null,
+    nombres		varchar(255)				not null,
+    usuario		varchar(255)				not null,
+    email		varchar(255)				not null,
+    clave		varchar(255)				not null,
+    privilegio  int							    null,
+    img			longblob					    null,
+    sitio		varchar(200)					null,
+    primary key(id_usuario));
+
+     set sql_safe_updates = 0;
+ UPDATE tb_usuarios set sitio = 'sena' where usuario = 'diana';
