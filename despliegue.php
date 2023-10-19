@@ -15,6 +15,9 @@ echo calculo_v3() . "<br>";
 // Se invoca la función contar_usuarios
 echo contar_usuarios() . "<br>";
 
+// Se invoca la función insertar_usuarios
+//echo insertar_usuarios('Oscar', 'oscar', 'oscar@gmail.com', '123');
+
 
 
 ?>

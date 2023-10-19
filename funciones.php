@@ -83,7 +83,7 @@ function calculo_v3()
 }
 
 
-//funcion para contar
+//funcion para contar_usuarios
 function contar_usuarios(){
 
     $salida = 0; // Inicializa la variable
@@ -106,6 +106,44 @@ function contar_usuarios(){
     $conexion->close(); //Cerrar conexion
     return $salida; //Retorna la operación
 }
+
+
+//funcion para contar_usuarios
+function insertar_usuarios($nombres, $usuario, $email, $clave)
+{
+
+    $salida = " "; // Inicializa la variable
+
+    //Conexión con la base de datos
+    $conexion = mysqli_connect('localhost', 'root', 'root', 'db_proyecto_ddm');
+    $sql      = "INSERT INTO `db_proyecto_ddm`.`tb_usuarios` (`nombres`, `usuario`, `email`, `clave`) "; //Sql para publicar una columna con un número
+    $sql     .="VALUES ('$nombres', '$usuario', '$email','$clave' )"; //sql ingresa valores concatenando
+    $resultado = $conexion->query($sql); //Resultado de ejecutar el query
+
+    try {
+
+        $resultado = $conexion->query($sql);
+    } catch (mysqli_sql_exception $e) {
+        //var_dump( $e );
+        //echo $e->getMessage(); //Imprimie el error.
+    }
+
+    if ($conexion->affected_rows > 0) {
+
+        //echo "Grabado grabado hola";
+        $salida = 1;
+    } else {
+
+        //echo "Error error";
+        $salida = 0;
+    }
+
+    $conexion->close();//Cerrar conexion
+
+    return $salida;//Retorna la operación
+}
+
+
 
 
 ?>
