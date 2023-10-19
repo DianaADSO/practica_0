@@ -177,10 +177,34 @@ function actualizar_usuarios($usuario, $sitio)
     //validación si el resultado es verdadero
     if ($resultado == true) {
 
-        $salida = "Se ha agregado tu sitio:" . " " .$sitio; // Envia mensaje afirmativo
+        $salida = "Se ha agregado tu sitio";// Envia mensaje afirmativo
     } else {
 
         $salida = "No se ha agregado tu sitio"; // Envia mensaje negativo
+    }
+    return $salida; //Retorna la operación
+}
+
+
+//funcion para contar_usuarios
+function poner_mensaje($usuario,$mensaje)
+{
+
+    $salida = "";
+
+    //Conexión con la base de datos
+    $connexion = new mysqli('localhost', 'root', 'root', 'db_proyecto_ddm');
+    $consulta  = "UPDATE tb_usuarios set invitacion = '$mensaje' where usuario = '$usuario'"; //Sql para agregar datos al campo de un usuario
+    $resultado = $connexion->query($consulta); //Resultado de ejecutar el query
+
+
+    //validación si el resultado es verdadero
+    if ($resultado == true) {
+
+        $salida = "Se ha agregado tu mensaje"; // Envia mensaje afirmativo
+    } else {
+
+        $salida = "No se ha agregado tu mensaje"; // Envia mensaje negativo
     }
     return $salida; //Retorna la operación
 }
@@ -191,18 +215,21 @@ function actualizar_usuarios($usuario, $sitio)
 function mostrar_sitio($usuario)
 {
 
+
+
     $salida = " "; // Inicializa la variable
 
     //Conexión con la base de datos
     $conexion = mysqli_connect('localhost', 'root', 'root', 'db_proyecto_ddm');
-    $sql      = "SELECT sitio from tb_usuarios where usuario = '$usuario'"; //Sql para mostrar el sitio del usuario 
+    $sql      = "SELECT sitio, invitacion from tb_usuarios where usuario = '$usuario'"; //Sql para mostrar el sitio del usuario 
     $resultado = $conexion->query($sql); //Resultado de ejecutar el query
 
     //Recorre el recordset
     while ($fila = mysqli_fetch_assoc($resultado)) {
 
+        $s = $fila['invitacion'];
         $salida .= "El sitio" . " " . "de". " " . $usuario . " " . "es:" . " " . "<a href='".$fila['sitio']."'>"; //Recibe el valor de la columna sitio y genera un enlace
-        $salida .= "Ve a mi sitio"; //concatena el enlace
+        $salida .= $s; //concatena el enlace
         $salida .= " </a>";//concatena el enlace
 
     }

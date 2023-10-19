@@ -22,8 +22,11 @@ echo contar_usuarios() . "<br>". "<br>";
 //echo borrar_usuarios('diana');
 
 // Se invoca la función actualizar_usuarios
-//echo actualizar_usuarios('vale', 'https://twitter.com/valeprograma');
+echo actualizar_usuarios('valentina', 'https://www.twitter.com/valleprograma/') . "<br>";
 
 // Se invoca la función actualizar_usuarios
-echo mostrar_sitio('diana') . "<br>";
+echo mostrar_sitio('valentina') . "<br>";
+
+// Se invoca la función poner_mensaje
+//echo poner_mensaje('valentina', 'No quiero') . "<br>";
 ?>
